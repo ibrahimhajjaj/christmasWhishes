@@ -6,6 +6,13 @@ if (isset($_SESSION['login_user']) ){
 
 //die("aaa");
 
+    $wantedWish = $_GET['id'];
+
+    $postDetial = mysqli_query($connect,"SELECT * FROM `gclwish` 
+    WHERE wishID = '$wantedWish'") ;
+
+
+
 
 ?>
 
@@ -21,17 +28,29 @@ if (isset($_SESSION['login_user']) ){
   <body>
     <div id="container">
         <?php include 'include/header.php'; ?>
+        <?php
+
+        while ($wishes = mysqli_fetch_assoc($postDetial)){
+
+            echo (
+            "        	
+                       <main id='display'>
+                            <img src='img/$wishes[filepath]' alt=''/>
+                            <h1>$wishes[wish]</h1>
+                            <h2>Priority - $wishes[priority]</h2>
+                            <p>$wishes[wishDesc]</p>
+                            <a href='$wishes[weblink]' target='_blank'>$wishes[weblink]</a>
+                       </main>
+                  "
+            );
+
+        }
 
 
-      
-          <main id="display">
-        <img src="img/car.jpg" alt=""/>
-        <h1>'54 Convertible - Light Blue</h1>
-        <h2>Priority - 1</h2>
-        <p>According to Eartha Kitt's follow-up song, this is actually a 1954 light blue Cadillac .</p>
-        <a href="https://www.thehairpin.com/2013/12/the-true-cost-of-santa-baby/">https://www.thehairpin.com/2013/12/the-true-cost-of-santa-baby/</a>
-        
-      </main>
+
+        ?>
+
+
       
       <footer>
         &copy; Jamie Mitchell - COIS 3420 Winter 2018

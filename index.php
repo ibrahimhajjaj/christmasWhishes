@@ -32,7 +32,21 @@ WHERE fk_userID = '$userId' ORDER BY `wishID` ASC ") ;
   <body>
     <div id="container">
         <?php include 'include/header.php'; ?>
-         
+         <div style="display: ruby;">
+
+             <?php
+             if(isset($_GET['message'])){
+                 echo " <h4>Message error  </h4>"." : ";
+                 $message = $_GET['message'];
+                 echo "<p style='color: red;font-weight: bold'>  $message  </p>";
+
+
+             }else{
+
+             }
+
+             ?>
+         </div>
       <main>
         <ol>
             <?php
@@ -42,7 +56,7 @@ WHERE fk_userID = '$userId' ORDER BY `wishID` ASC ") ;
                 echo (
                   "        	
                        <li>
-                            <a href='wishdetails.php'> $wishes[wish] </a>
+                            <a href='wishdetails.php?id=$wishes[wishID]'> $wishes[wish] </a>
                             <a href='include/deletewish.php?id=$wishes[wishID]' class='button'>Delete</a>
                             <a href='editwish.php?id=$wishes[wishID]' class='button'>Edit</a>
                        </li>
